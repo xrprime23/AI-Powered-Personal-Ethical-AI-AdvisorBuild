@@ -1,0 +1,27 @@
+CLI
+Analyze a text description (direct string):
+python ethical_advisor.py --input-text "This model predicts recidivism using arrest records and demographic features. It uses age, race, and gender." --save-audit
+Analyze a code file:
+python ethical_advisor.py --input-code /path/to/file.py --save-audit
+Analyze a dataset CSV:
+python ethical_advisor.py --input-dataset data/train.csv --label-col outcome --protected gender race --save-audit
+
+
+HTTP
+Start server:
+python ethical_advisor.py --serve
+POST JSON to analyze:
+POST /analyze
+{
+  "type": "text",
+  "text": "..."
+}
+Or dataset:
+POST /analyze
+{
+  "type": "dataset",
+  "path": "/full/path/to/data.csv",
+  "label_col": "target"
+}
+QA endpoint:
+POST /qa {"question":"What's the overall risk?"}
